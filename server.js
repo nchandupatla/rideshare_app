@@ -5,6 +5,7 @@ var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
+var ADS_COLLECTION = "ads";
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -22,7 +23,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 
   // Save database object from the callback for reuse.
   db = database;
-  console.log("Database connection ready");
+  console.log("Mongo Database connection ready");
 
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
@@ -39,33 +40,32 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-/*  "/contacts"
- *    GET: finds all contacts
- *    POST: creates a new contact
- */
 
-app.get("/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+
+app.get("/ads", function(req, res) {
+  db.collection(ADS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
+      handleError(res, err.message, "Failed to get ads.");
     } else {
       res.status(200).json(docs);  
     }
   });
 });
 
-app.post("/contacts", function(req, res) {
-  var newContact = req.body;
-  newContact.createDate = new Date();
 
-  if (!(req.body.firstName || req.body.lastName)) {
-    handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+app.post("/insertAd", function(req, res) {
+  var ad = req.body;
+  ad.createdDate = new Date();
+  console.log("Request document "+req.body);
+  if (!(req.body.title || req.body.fromLocation || req.body.toLocation  )) {
+    handleError(res, "Invalid user input", "Must provide required fields.", 400);
   }
 
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+  db.collection(ADS_COLLECTION).insertOne(ad, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
+      handleError(res, err.message, "Failed to create new ad.");
     } else {
+      console.log("Successfully inserted")
       res.status(201).json(doc.ops[0]);
     }
   });
@@ -77,35 +77,36 @@ app.post("/contacts", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+ app.get("/ads/:id", function(req, res) {
+  db.collection(ADS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to get contact");
+      handleError(res, err.message, "Failed to get ad");
     } else {
       res.status(200).json(doc);  
     }
   });
 });
 
-app.put("/contacts/:id", function(req, res) {
+ app.put("/ads/:id", function(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
+  db.collection(ADS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to update contact");
+      handleError(res, err.message, "Failed to update ad");
     } else {
       res.status(204).end();
     }
   });
 });
 
-app.delete("/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+ app.delete("/ads/:id", function(req, res) {
+  db.collection(ADS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
-      handleError(res, err.message, "Failed to delete contact");
+      handleError(res, err.message, "Failed to delete ad");
     } else {
       res.status(204).end();
     }
   });
 });
+

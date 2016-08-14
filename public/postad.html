@@ -1,0 +1,25 @@
+<div class="row" >
+  <div class="col-md-6">
+      <h2>Create new ad</h2>
+  </div>
+</div>
+<div class="container">
+  <div>
+    <p>
+      <label>Title (required)</label> 
+      <input id="name" class="form-control" type="text" ng-model="ad.title" required> 
+    </p>
+    <p>
+      <label>From Location (required)</label> 
+      <input id="name" class="form-control" type="text" ng-model="ad.fromLocation" required> 
+    </p>
+    <p>
+      <label>To Location (required)</label> 
+      <input id="name" class="form-control" type="text" ng-model="ad.toLocation" required> 
+    </p>
+    <p>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="saveAd(ad)">Save</button>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+    </p>
+  </div>
+</div>

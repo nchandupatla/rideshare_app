@@ -1,0 +1,30 @@
+<div class = "row">
+  <div class="col-md-6">
+    <h2>
+      {{ ad.title }}
+    </h2>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-2">
+    <a href="#/"><button style="margin-top:20px" class="btn btn-default" ng-click="deleteAd(ad._id)">Delete</button></a>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+<div ng-hide="editMode" class="container">
+  <div>
+    
+    <p ng-if="ad.fromLocation">From Location: {{ ad.fromLocation }} </p>
+    <p ng-if="ad.toLocation">To Location: {{ ad.toLocation }} </p>
+    <p ng-if="ad.createdDate">Created Ad: {{ ad.createdDate }} </p>
+   
+    <p>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="toggleEdit()">Edit</button>
+      <a style="margin-top:20px" class="btn btn-default" href="#/">Back</a>
+    </p>
+  </div>
+</div>
+<!-- Contact form -->
+<div ng-include="editFormUrl">
+</div>

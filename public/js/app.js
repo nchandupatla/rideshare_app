@@ -1,116 +1,125 @@
-angular.module("contactsApp", ['ngRoute'])
+angular.module("rideShareApp", ['ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "list.html",
-                controller: "ListController",
+             .when("/newAd", {
+                controller: "NewAdController",
+                templateUrl: "postad.html"
+            })
+            .when("/showAllAds", {
+                templateUrl: "adslist.html",
+                controller: "AdsListController",
                 resolve: {
-                    contacts: function(Contacts) {
-                        return Contacts.getContacts();
+                    ads: function(Contacts) {
+                        return Contacts.getAllAds();
                     }
                 }
             })
-            .when("/new/contact", {
-                controller: "NewContactController",
-                templateUrl: "contact-form.html"
-            })
-            .when("/contact/:contactId", {
-                controller: "EditContactController",
-                templateUrl: "contact.html"
+             .when("/ads/:adId", {
+                controller: "EditAdController",
+                templateUrl: "ad.html"
             })
             .otherwise({
-                redirectTo: "/"
+                redirectTo: "/showAllAds"
             })
     })
     .service("Contacts", function($http) {
-        this.getContacts = function() {
-            return $http.get("/contacts").
+        
+        this.getAllAds = function() {
+            return $http.get("/ads").
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error finding contacts.");
+                    alert("Error finding ads.");
                 });
         }
-        this.createContact = function(contact) {
-            return $http.post("/contacts", contact).
+         this.createNewAd = function(ad) {
+            return $http.post("/insertAd", ad).
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error creating contact.");
+                    alert("Error creating ad.");
                 });
         }
-        this.getContact = function(contactId) {
-            var url = "/contacts/" + contactId;
+        this.getAd = function(adId) {
+            var url = "/ads/" + adId;
             return $http.get(url).
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error finding this contact.");
+                    alert("Error finding this ad.");
                 });
         }
-        this.editContact = function(contact) {
-            var url = "/contacts/" + contact._id;
-            console.log(contact._id);
-            return $http.put(url, contact).
+        this.editAd = function(ad) {
+            var url = "/ads/" + ad._id;
+            console.log(ad._id);
+            return $http.put(url, ad).
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error editing this contact.");
+                    alert("Error editing this ad.");
                     console.log(response);
                 });
         }
-        this.deleteContact = function(contactId) {
-            var url = "/contacts/" + contactId;
+        this.deleteAd = function(adId) {
+            var url = "/ads/" + adId;
             return $http.delete(url).
                 then(function(response) {
                     return response;
                 }, function(response) {
-                    alert("Error deleting this contact.");
+                    alert("Error deleting this ad.");
                     console.log(response);
                 });
         }
+
     })
-    .controller("ListController", function(contacts, $scope) {
-        $scope.contacts = contacts.data;
+    
+     .controller("AdsListController", function(ads, $scope) {
+        $scope.ads = ads.data;
     })
-    .controller("NewContactController", function($scope, $location, Contacts) {
+   
+
+     .controller("NewAdController", function($scope, $location, Contacts) {
         $scope.back = function() {
             $location.path("#/");
         }
 
-        $scope.saveContact = function(contact) {
-            Contacts.createContact(contact).then(function(doc) {
-                var contactUrl = "/contact/" + doc.data._id;
-                $location.path(contactUrl);
+        $scope.saveAd = function(ad) {
+            Contacts.createNewAd(ad).then(function(doc) {
+                /*var contactUrl = "/contact/" + doc.data._id;
+                $location.path(contactUrl);*/
+                 $location.path('/showAllAds');
+                console.log('sucessfully inserted');
             }, function(response) {
                 alert(response);
             });
         }
     })
-    .controller("EditContactController", function($scope, $routeParams, Contacts) {
-        Contacts.getContact($routeParams.contactId).then(function(doc) {
-            $scope.contact = doc.data;
+
+   
+    .controller("EditAdController", function($scope, $routeParams, Contacts) {
+       Contacts.getAd($routeParams.adId).then(function(doc) {
+            $scope.ad = doc.data;
         }, function(response) {
             alert(response);
         });
 
         $scope.toggleEdit = function() {
             $scope.editMode = true;
-            $scope.contactFormUrl = "contact-form.html";
+            $scope.editFormUrl = "postad.html";
         }
 
         $scope.back = function() {
             $scope.editMode = false;
-            $scope.contactFormUrl = "";
+            $scope.editFormUrl = "";
         }
 
-        $scope.saveContact = function(contact) {
-            Contacts.editContact(contact);
+        $scope.saveAd = function(ad) {
+            Contacts.editAd(ad);
             $scope.editMode = false;
-            $scope.contactFormUrl = "";
+            $scope.editFormUrl = "";
         }
 
-        $scope.deleteContact = function(contactId) {
-            Contacts.deleteContact(contactId);
+        $scope.deleteAd = function(adId) {
+            Contacts.deleteAd(adId);
         }
     });

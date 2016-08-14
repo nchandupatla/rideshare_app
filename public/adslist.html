@@ -1,0 +1,28 @@
+<div class = "row">
+  <div class="col-md-6">
+    <h2>
+      Ads
+    </h2>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover">
+    <tbody>
+      <tr ng-repeat="ad in ads | orderBy:'createdDate'" style="cursor:pointer">
+        <td>
+        <a ng-href="#/ads/{{ad._id}}">{{ ad.title }}</a>
+        </td>
+        <td>
+          {{ ad.fromLocation }}  <!-- <a ng-href="#/contact/{{contact._id}}">{{ ad.title }}</a> -->
+        </td>
+        <td>
+          {{ ad.toLocation }}  <!-- <a ng-href="#/contact/{{contact._id}}">{{ ad.title }}</a> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
