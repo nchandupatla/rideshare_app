@@ -74,15 +74,24 @@ angular.module("rideShareApp", ['ngRoute'])
     })
     
      .controller("AdsListController", function(ads, $scope) {
+        bootcards.init( {
+              offCanvasBackdrop : true,
+              offCanvasHideOnMainClick : true,
+              enableTabletPortraitMode : true,
+              disableRubberBanding : true,
+              disableBreakoutSelector : 'a.no-break-out'
+            });
         $scope.ads = ads.data;
+
     })
    
 
      .controller("NewAdController", function($scope, $location, Contacts) {
+         $('#datetimepicker1').datetimepicker();
         $scope.back = function() {
             $location.path("#/");
         }
-
+       
         $scope.saveAd = function(ad) {
             Contacts.createNewAd(ad).then(function(doc) {
                 /*var contactUrl = "/contact/" + doc.data._id;

@@ -1,8 +1,8 @@
-<div class = "row">
+<!-- <div class = "row">
   <div class="col-md-6">
-    <h2>
-      Ads
-    </h2>
+    <h3>
+    <b> Recent Trip Posts</b>
+    </h3>
   </div>
   <div class="col-md-3">
   </div>
@@ -17,12 +17,97 @@
         <a ng-href="#/ads/{{ad._id}}">{{ ad.title }}</a>
         </td>
         <td>
-          {{ ad.fromLocation }}  <!-- <a ng-href="#/contact/{{contact._id}}">{{ ad.title }}</a> -->
+          {{ ad.fromLocation }}  
         </td>
         <td>
-          {{ ad.toLocation }}  <!-- <a ng-href="#/contact/{{contact._id}}">{{ ad.title }}</a> -->
+          {{ ad.toLocation }}  
         </td>
       </tr>
     </tbody>
   </table>
+</div> -->
+
+ <div class="jumbotron text-center">
+      <form class="navbar-form navbar-center">
+       <div class="form-group">
+          </div>
+            <div class="form-group">
+               <input id="textinput" class="form-control"  name="" placeholder="Trip From                 ">
+            </div>
+            <div class="form-group">
+              <input id="textinput" class="form-control"  name="" placeholder="Trip To">
+            </div>
+            <a ui-sref="viewAll">
+            <button type="submit" class="btn btn-success">Search</button>
+            </a>
+      </form>
+    </div>
+
+
+ <h3><b>Recent Trips</b></h3><br>
+    <div class="row">
+      <div class="col-sm-6 bootcards-list">
+
+      <div class="panel panel-default">
+    <div class="panel-body">
+      <form>
+        <div class="row">
+          <div class="col-xs-9">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search Trips...">
+              <i class="fa fa-search"></i>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <a class="btn btn-success btn-block" href="#">
+              <i class="fa fa-plus"></i>
+              Add
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="list-group">
+  <div ng-repeat="ad in ads | orderBy:'createdDate'" style="cursor:pointer">
+  <a class="list-group-item" ng-click="showAdDetails"; >
+
+    <div class="row">
+      <div class="col-sm-6">
+        <i class="fa fa-1x fa-car pull-left"></i>
+        <h4 class="list-group-item-heading">{{ad.fromLocation}} <i class="fa fa-caret-right" aria-hidden="true"></i> {{ad.toLocation}}</h4>
+        <p class="list-group-item-text">{{ad.startDate | date:'short'}} </p>
+      </div>
+      <div class="col-sm-6">
+        <p class="list-group-item-text">Price: ${{ad.startPrice}}</p>
+        <p class="list-group-item-text">{{ad.seatsAvailble}} Seats Available</p>
+        <p class="list-group-item-text">Vehicle: {{ad.vehicle}}</p>
+      </div>
+    </div>
+
+  </a>
+  </div>
+
 </div>
+
+  </div>
+   
+      </div>
+ 
+      <div class="col-sm-6 bootcards-cards">
+       <div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h3 class="panel-title pull-left">Atlanta <i class="fa fa-caret-right" aria-hidden="true"></i> St. Louis</h3>
+      <a class="btn btn-success pull-right" href="#">
+        <i class="fa fa-phone-square"></i>
+        Contact me
+      </a>
+  </div>
+  <div class="panel-body">
+    <p>More Details</p>
+  </div>
+  <div class="panel-footer">
+    <small><span>Smoking</span>&nbsp;&nbsp;&nbsp;<span>Music</span>&nbsp;&nbsp;&nbsp;<span>Luggage Allowed</span>&nbsp;&nbsp;&nbsp;<span>Telugu</span></small> 
+  </div>
+</div></div>
+       

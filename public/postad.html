@@ -1,21 +1,36 @@
-<div class="row" >
-  <div class="col-md-6">
-      <h2>Create new ad</h2>
-  </div>
+<!-- <div class="row" >
 </div>
 <div class="container">
   <div>
     <p>
-      <label>Title (required)</label> 
+      <label>Title</label> 
       <input id="name" class="form-control" type="text" ng-model="ad.title" required> 
     </p>
     <p>
-      <label>From Location (required)</label> 
+      <label>From Location</label> 
       <input id="name" class="form-control" type="text" ng-model="ad.fromLocation" required> 
     </p>
     <p>
-      <label>To Location (required)</label> 
+      <label>To Location </label> 
       <input id="name" class="form-control" type="text" ng-model="ad.toLocation" required> 
+    </p>
+    <p>
+      <label>From Date </label> 
+      <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+    </p>
+    <p>
+      <label>To Date </label> 
+      <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
     </p>
     <p>
       <button style="margin-top:20px" class="btn btn-default" ng-click="saveAd(ad)">Save</button>
@@ -23,3 +38,223 @@
     </p>
   </div>
 </div>
+
+
+ -->
+
+ <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Post A New Trip</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Trip Title</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text"  ng-model="ad.title" placeholder="Trip Title" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">Description</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="" name="" placeholder="My name is rohit and i'm travelling to California to meet a friend for this long weekend ..."></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">Trip From</label>
+  <div class="col-md-5">                     
+    <input id="textinput" class="form-control" ng-model="ad.fromLocation"  placeholder="Enter a location or  city">
+  </div>
+</div>
+
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">Trip To</label>
+  <div class="col-md-5">                     
+    <input id="textinput" class="form-control" ng-model="ad.toLocation" placeholder="Enter destination location or city">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">Start Date</label>
+  <div class="col-md-5">                     
+    <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" ng-model="ad.startDate" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectmultiple">How do you want to split the trip?</label>
+  <div class="col-md-4">
+    <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple" ng-model="ad.splitArray">
+      <option value="1">Price</option>
+      <option value="2">Fuel</option>
+      <option value="3">Food</option>
+      <option value="6">Driving</option>
+      <option value="5">None</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Start Trip Price</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Price" class="form-control input-md" required="" ng-model="ad.startPrice">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">Round Trip</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="radios-0">
+      <input type="radio" name="radios" id="radios-0" value="1" checked="checked" ng-model="ad.isRoundTrip">
+      Yes
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="2">
+      No
+    </label> 
+  </div>
+</div>
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="">End Date</label>
+  <div class="col-md-5">                     
+    <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" ng-model="ad.endDate" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Return Trip Price</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" placeholder="Price" ng-model="ad.returnTripPrice" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+
+
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Seats Available</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.seatsAvailble" placeholder="Number of seats available" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Vehicle</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.vehicle" placeholder="Honda Accord 2015" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">Space for Luggage</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="radios-0" ng-model="ad.spaceForLuggage">
+      <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+      Yes
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="2">
+      No
+    </label> 
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">Smoking Allowed</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="radios-0" ng-model="ad.smoking">
+      <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+      Yes
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="2">
+      No
+    </label> 
+  </div>
+</div>
+
+
+<hr>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Name</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.name" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.email" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Phone Number</label>  
+  <div class="col-md-5">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.phone" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">Gender</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="radios-0">
+      <input type="radio" name="radios" id="radios-0" value="1" checked="checked" ng-model="ad.contact.gender">
+      Male
+    </label> 
+    <label class="radio-inline" for="radios-1">
+      <input type="radio" name="radios" id="radios-1" value="2">
+      Female
+    </label> 
+  </div>
+</div>
+
+<!-- File Button --> 
+<div class="form-group">
+  <label class="col-md-4 control-label" for="filebutton">Upload Images</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="filebutton" class="input-file" type="file">
+  </div>
+</div>
+
+
+<!-- Button (Double) -->
+<div class="form-group">
+<label class="col-md-4 control-label"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" class="btn btn-default" ng-click="saveAd(ad)">Save</button>
+    <button id="button2id" name="button2id" class="btn btn-default" ng-click="back()">Cancel</button>
+  </div>
+</div>
+
+
+
+
+
+
+</fieldset>
+</form>
