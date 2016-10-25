@@ -213,9 +213,45 @@
 
 </div> -->
 
+  
+
+
 
 <div class="container">
-  <div class="flex-row row">
+
+
+<div class="form-group has-feedback">
+   <input ng-model="search"  placeholder="Filter RideShare Locations" class="form-control">
+    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+</div>
+
+ <br><br><br>
+ <div class="flex-row row">
+ <h3><strong>Recent RideShares</strong></h3><br>
+<div ng-repeat="ad in ads | filter:search">
+
+    
+    <div class="col-xs-6 col-sm-4 col-lg-6">
+     <uib-accordion  close-others="oneAtATime">
+  <div uib-accordion-group  class="panel-success" heading="{{ad.fromCity}} - {{ad.toCity}}  ">
+     <p class="flex-text text-muted">
+          <p><strong>Departure</strong> 09/14/2016 4pm</p>
+      <p><strong>RideShare Price</strong> $25</p>
+      <p><strong>Vehice</strong> Honda Accord 2015</p>
+      <p><strong>Gender</strong> Male</p>
+      <p><strong>Space For Luggage</strong> Yes</p>
+      <p><strong>Smoking Allowed</strong> No</p>
+          </p>
+    </div>
+    </uib-accordion>
+    </div>
+    </div>
+
+    </div>
+</div>
+
+<!-- <div class="container"> -->
+ <!--  <div class="flex-row row">
 
 
     <div class="col-xs-6 col-sm-4 col-lg-3">
@@ -233,193 +269,9 @@
           <p><a class="btn btn-success" href="#">Link</a></p>
         </div>
         <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail ">
-        <div class="caption">
-          <h3>Atlanta - SFO</h2>
-          <p class="flex-text text-muted">
-            <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>SFO - Atlanta</h2>
-          <p class="flex-text text-muted">
-          <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Boston - Chicago</h2>
-          <p class="flex-text text-muted">
-          <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p><a class="btn btn-success" href="#">Link</a></p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Michigan - Ohio</h2>
-          <p class="flex-text text-muted">
-            <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>St.Louis - Atlanta</h2>
-          <p class="flex-text text-muted">
-            <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Las Vegas - Texas</h2>
-          <p class="flex-text text-muted">
-            <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-    <div class="col-xs-6 col-sm-4 col-lg-3">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>Florida - New Jersey</h2>
-          <p class="flex-text text-muted">
-            <p><strong>Departure</strong> 09/14/2016 4pm</p>
-      <p><strong>RideShare Price</strong> $25</p>
-      <p><strong>Vehice</strong> Honda Accord 2015</p>
-      <p><strong>Gender</strong> Male</p>
-      <p><strong>Space For Luggage</strong> Yes</p>
-      <p><strong>Smoking Allowed</strong> No</p>
-          </p>
-          <p>
-            <a class="btn btn-success" href="#">Link</a>
-          </p>
-        </div>
-        <!-- /.caption -->
-      </div>
-      <!-- /.thumbnail -->
-    </div>
-
-
-  </div>
-  <!-- /.flex-row  -->
-</div>
-<!-- /.container  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <!-- </div>
+      /.thumbnail
+    </div> --> 
 
 
 <!-- <div class = "row">

@@ -60,9 +60,9 @@ app.post("/insertAd", function(req, res) {
   var ad = req.body;
   ad.createdDate = new Date();
   console.log("Request document "+req.body);
-  if (!(req.body.title || req.body.fromLocation || req.body.toLocation  )) {
-    handleError(res, "Invalid user input", "Must provide required fields.", 400);
-  }
+  // if (!(req.body.title || req.body.fromLocation || req.body.toLocation  )) {
+  //   handleError(res, "Invalid user input", "Must provide required fields.", 400);
+  // }
 
   db.collection(ADS_COLLECTION).insertOne(ad, function(err, doc) {
     if (err) {

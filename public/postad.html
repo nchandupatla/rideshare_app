@@ -8,7 +8,7 @@
 <!-- <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Trip Title</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text"  ng-model="ad.title" placeholder="Trip Title" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text"  ng-model="ad.title" placeholder="Trip Title" class="form-control input-md" >
     
   </div>
 </div> -->
@@ -24,7 +24,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="">Trip From</label>
   <div class="col-md-5">                     
-    <input id="textinput" class="form-control" ng-model="ad.fromLocation"  placeholder="Enter a location or  city">
+     <input auto-complete ui-items="cities_list" ng-model="ad.fromCity"  class="form-control"  ng-change="onFromCityChange(ad.fromCity)">
   </div>
 </div>
 
@@ -33,7 +33,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="">Trip To</label>
   <div class="col-md-5">                     
-    <input id="textinput" class="form-control" ng-model="ad.toLocation" placeholder="Enter destination location or city">
+     <input auto-complete ui-items="cities_list" ng-model="ad.toCity"  class="form-control"  ng-change="onToCityChange(ad.toCity)">
   </div>
 </div>
 
@@ -64,7 +64,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Start Trip Price</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Price" class="form-control input-md" required="" ng-model="ad.startPrice">
+  <input id="textinput" name="textinput" type="text" placeholder="Price" class="form-control input-md"  ng-model="ad.startPrice">
     
   </div>
 </div>
@@ -73,18 +73,17 @@
   <label class="col-md-4 control-label" for="radios">Round Trip</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0">
-      <input type="radio" name="radios" id="radios-0" value="1" checked="checked" ng-model="ad.isRoundTrip">
+      <input type="radio" name="radios" id="radios-0" value=true  ng-model="ad.isRoundTrip">
       Yes
     </label> 
     <label class="radio-inline" for="radios-1">
-      <input type="radio" name="radios" id="radios-1" value="2">
+      <input type="radio" name="radios" id="radios-1" value=false ng-model="ad.isRoundTrip">
       No
     </label> 
   </div>
 </div>
 
-
-<div class="form-group">
+<div class="form-group" ng-show=ad.isRoundTrip>
   <label class="col-md-4 control-label" for="">End Date</label>
   <div class="col-md-5">                     
     <div class='input-group date' id='datetimepicker1'>
@@ -96,10 +95,10 @@
   </div>
 </div>
 
-<div class="form-group">
+<div class="form-group" ng-show=ad.isRoundTrip>
   <label class="col-md-4 control-label" for="textinput">Return Trip Price</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" placeholder="Price" ng-model="ad.returnTripPrice" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text" placeholder="Price" ng-model="ad.returnTripPrice" class="form-control input-md" >
     
   </div>
 </div>
@@ -110,14 +109,25 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Seats Available</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" ng-model="ad.seatsAvailble" placeholder="Number of seats available" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.seatsAvailble" placeholder="Number of seats available" class="form-control input-md" >
     
   </div>
 </div>
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Vehicle</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" ng-model="ad.vehicle" placeholder="Honda Accord 2015" class="form-control input-md" required="">
+  <input auto-complete ui-items="cars_make" ng-model="ad.vehicle"  class="form-control"  ng-change="onVehiceChange(ad.vehicle)">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Vehicle Model</label>  
+  <div class="col-md-5">
+  <select  ng-model="ad.vehicleModel" class="form-control input-md" >
+      <option ng-repeat="model in cars_models" value="{{model}}">{{model}}</option>
+  </select>
+  <!-- <input auto-complete ui-items="cars_models" ng-model="ad.vehicleModel"  class="form-control"> -->
     
   </div>
 </div>
@@ -156,14 +166,14 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Name</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.name" placeholder="" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.name" placeholder="" class="form-control input-md" >
     
   </div>
 </div>
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Email</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.email" placeholder="" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.email" placeholder="" class="form-control input-md" >
     
   </div>
 </div>
@@ -171,7 +181,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Phone Number</label>  
   <div class="col-md-5">
-  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.phone" placeholder="" class="form-control input-md" required="">
+  <input id="textinput" name="textinput" type="text" ng-model="ad.contact.phone" placeholder="" class="form-control input-md" >
     
   </div>
 </div>
@@ -190,12 +200,12 @@
 </div>
 
 <!-- File Button --> 
-<div class="form-group">
+<!-- <div class="form-group">
   <label class="col-md-4 control-label" for="filebutton">Upload Images</label>
   <div class="col-md-4">
     <input id="filebutton" name="filebutton" class="input-file" type="file">
   </div>
-</div>
+</div> -->
 
 
 <!-- Button (Double) -->

@@ -14,13 +14,15 @@
       <!-- Bootcards CSS for desktop: -->
     <link rel="stylesheet" href="/libs/bootcards/dist/css/bootcards-desktop.min.css">
     <!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
+     <link rel="stylesheet" href="/libs/angular-ui-select/dist/select.min.css">
+     <link rel="stylesheet" href="/libs/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" href="app.css">
   </head>
 
   <body>
   <!-- <div style="background-image: url(bg_image1.jpg)"> -->
       <nav class="navbar yamm navbar-inverse navbar-fixed-top" style="background-color:#2c3e50">
-      <div class="container">
+      <div class="container" ng-controller="NavController">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -28,19 +30,63 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#/showAllAds"><i class="fa fa-car" aria-hidden="true" style="color:#5cb85c;font-size:30px"></i>&nbsp;&nbsp;<span style="color:white;font-size:25px">#WeDesi RideShare</span></a>
+          <a class="navbar-brand" href="#/showAllAds"><i class="fa fa-car" aria-hidden="true" style="color:#5cb85c;font-size:30px"></i>&nbsp;&nbsp;
+          <span style="color:white;font-size:25px">#WeDesi RideShare</span>
+          </a>
+
+
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-   
           <form class="navbar-form navbar-right">
-            <!-- <a href="#/showAllAds">
-            <button type="submit" class="btn btn-link" >Home</button>
-            </a> -->
-            <input id="textinput" class="form-control"  placeholder="Select a city">
-            <a href="#/newAd">
+            <div class="form-group">
+              <!-- <ui-select ng-model="city.selected" theme="bootstrap" style="width: 400px">
+            <ui-select-match>{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="city in cities_list | filter: $select.search">
+            <div ng-bind-html="city | highlight: $select.search"></div>
+            </ui-select-choices>
+            </ui-select> -->
+
+           <!--  <ui-select  ng-model="city.selected" reset-search-input="true" required="true" ng-maxlength="40">
+          <ui-select-match placeholder="Select table or add new one...">
+            <span>{{$select.selected || $select.search}}</span>
+            <a class="btn btn-xs btn-link pull-right" ng-click="clear($event, $select)"><i class="glyphicon glyphicon-remove"></i></a>
+          </ui-select-match>
+          <ui-select-choices repeat="city in cities_list | filter: $select.search" refresh="refreshResults($select)" refresh-delay="0">
+            <span>{{city}}</span>
+          </ui-select-choices>
+        </ui-select> -->
+<!-- 
+        <input type="text" ng-model="selectedCountries" 
+        placeholder="Search Countries" 
+        typeahead="city in cities_list | filter:$viewValue | limitTo:10" 
+        typeahead-min-length='1' 
+        typeahead-on-select='onSelectPart($item, $model, $label)' 
+        typeahead-template-url="customTemplate.html" 
+        class="form-control" 
+        style="width:350px;"> -->
+
+            </div>
+          
+            <div class="form-group">
+              <a href="#/newAd" class="pull-right">
             <button type="submit" class="btn btn-success" ng-click="">Post a trip</button>
             </a>
+            </div>
+
+          </form>
+        </div>
+        
+
+
+
+        <div id="navbar" class="navbar-collapse collapse" >
+   
+          <form class="navbar-form navbar-center" >
+            
+            
+            
+            
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -57,7 +103,13 @@
          <p class="text-muted text-center" style="padding-top:10px">@Copyrights #Rideshare 2016</p>
       </div>
       </footer> -->
+     
   </body>  
+  <!--  <footer>
+      <div >
+      <p class="text-muted text-center">@Copyrights #Rideshare 2016</p>
+      </div>
+      </footer> -->
 
      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -72,4 +124,14 @@
     <script src="/libs/moment/moment.js"></script>
     <script src="/libs/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="/libs/bootcards/dist/js/bootcards.min.js"></script>
+    <script src="/libs/angular-ui-select/dist/select.min.js"></script>
+    <script src="/libs/angular-sanitize/angular-sanitize.min.js"></script>
+     <script src="/libs/ui-bootstrap/ui-bootstrap.js"></script>
+     <script src="/libs/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+      <i>({{match.model}})</i>
+  </a>
+</script>
 </html>
