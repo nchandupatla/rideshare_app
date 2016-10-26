@@ -214,11 +214,7 @@
 </div> -->
 
   
-
-
-
 <div class="container">
-
 
 <div class="form-group has-feedback">
    <input ng-model="search"  placeholder="Filter RideShare Locations" class="form-control">
@@ -229,8 +225,6 @@
  <div class="flex-row row">
  <h3><strong>Recent RideShares</strong></h3><br>
 <div ng-repeat="ad in ads | filter:search">
-
-    
     <div class="col-xs-6 col-sm-4 col-lg-6">
      <uib-accordion  close-others="oneAtATime">
   <div uib-accordion-group  class="panel-success" heading="{{ad.fromCity}} - {{ad.toCity}}  ">
